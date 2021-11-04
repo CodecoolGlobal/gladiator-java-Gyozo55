@@ -1,8 +1,8 @@
 package com.codecool.gladiator.view;
 
-/**
- * Interface used for basic View functionality (displaying text)
- */
+
+import java.io.IOException;
+
 public interface Viewable {
     /**
      * Displays given text into the View
@@ -15,7 +15,7 @@ public interface Viewable {
      * Asks the user for a number between min and max and returns it
      * @param min minimal value of the number accepted
      * @param max maximal value of the number accepted
-     * @return the number from the user
+     * @return
      */
-    int getNumberBetween(int min, int max);
+    int getNumberBetween(int min, int max) throws IOException;
 }

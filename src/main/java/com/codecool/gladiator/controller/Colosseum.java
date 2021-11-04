@@ -6,6 +6,7 @@ import com.codecool.gladiator.model.gladiators.*;
 import com.codecool.gladiator.util.Tournament;
 import com.codecool.gladiator.view.Viewable;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -72,7 +73,7 @@ public class Colosseum {
         view.display("Ave Caesar, and welcome to the Colosseum!");
     }
 
-    public void welcomeAndAskForStages() {
+    public void welcomeAndAskForStages() throws IOException {
         welcome();
         view.display("How many stages of the Tournament do you wish to watch? (1-10)");
         stages = view.getNumberBetween(MIN_TOURNAMENT_STAGES, MAX_TOURNAMENT_STAGES);
