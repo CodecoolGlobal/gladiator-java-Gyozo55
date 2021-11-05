@@ -7,6 +7,7 @@ public abstract class Gladiator {
     private final int baseSp;
     private final int baseDex;
     private int level;
+    private Types type;
 
     /**
      * Constructor for Gladiators
@@ -17,12 +18,13 @@ public abstract class Gladiator {
      * @param baseDex the gladiator's base Dexterity Points
      * @param level the gladiator's starting Level
      */
-    public Gladiator(String name, int baseHp, int baseSp, int baseDex, int level) {
+    public Gladiator(String name, int baseHp, int baseSp, int baseDex, int level, Types type) {
         this.name = name;
         this.baseHp = baseHp;
         this.baseSp = baseSp;
         this.baseDex = baseDex;
         this.level = level;
+        setType(type);
     }
 
     /**
@@ -40,9 +42,7 @@ public abstract class Gladiator {
      */
     protected abstract Multiplier getDexMultiplier();
 
-    /**
-     * @return Gladiator's name
-     */
+
     public String getName() {
         return name;
     }
@@ -55,8 +55,29 @@ public abstract class Gladiator {
      * @return the full name
      */
     public String getFullName() {
-        // Todo
-        return name;
+        String typeName = this.type.toString();
+        return typeName+" "+name;
+    }
+
+    public Types getType() {
+        return type;
+    }
+
+    public void setType(Types type) {
+        for(Types typeEnum: Types.values()){
+            if (typeEnum == type) {
+                this.type = type;
+                break;
+            }
+        }
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void levelUp(){
+        this.level += 1;
     }
 
     public enum Multiplier {
@@ -75,4 +96,10 @@ public abstract class Gladiator {
         }
     }
 
+    public enum Types{
+        Brutal,
+        Swordsman,
+        Archer,
+        Assassin
+    }
 }

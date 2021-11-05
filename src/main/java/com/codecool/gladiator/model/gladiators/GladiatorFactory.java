@@ -37,6 +37,6 @@ public class GladiatorFactory {
      */
     public Gladiator generateRandomGladiator() {
         // Todo
-        return new Brutal(getRandomName(), 50, 50, 50, 1);
+        return new Brutal(getRandomName(), 50, 50, 50, 1, Gladiator.Types.Brutal);
     }
 }

@@ -10,11 +10,9 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-//        ConsoleView consoleView = new ConsoleView();
         Colosseum colosseum = new Colosseum(new ConsoleView(), new GladiatorFactory("Names.txt"));
         colosseum.welcomeAndAskForStages();
         colosseum.runSimulation();
-//        consoleView.display("test");
     }
 
 }
