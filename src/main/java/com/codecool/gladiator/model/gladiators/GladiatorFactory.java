@@ -1,13 +1,16 @@
 package com.codecool.gladiator.model.gladiators;
 
+import java.util.concurrent.ThreadLocalRandom;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GladiatorFactory {
 
     private List<String> names;
+    private final ArrayList<Gladiator> gladiatorArrayList = new ArrayList<>();
 
     public GladiatorFactory(String fileOfNames) {
         try {
@@ -19,24 +22,26 @@ public class GladiatorFactory {
         }
     }
 
-    /**
-     * Picks a random name from the file given in the constructor
-     *
-     * @return gladiator name
-     */
     private String getRandomName() {
-        // Todo
-        return "Brutus";
+        return names.get(getRandomNumber(0, names.size()));
     }
 
-    /**
-     * Instantiates a new gladiator with random name and type.
-     * Creating an Archer, an Assassin, or a Brutal has the same chance,
-     * while the chance of creating a Swordsman is the double of the chance of creating an Archer.
-     * @return new Gladiator
-     */
+    private int getRandomNumber(int min, int max){
+        return ThreadLocalRandom.current().nextInt(min, max + 1);
+    }
+
     public Gladiator generateRandomGladiator() {
-        // Todo
-        return new Brutal(getRandomName(), 50, 50, 50, 1, Gladiator.Types.Brutal);
+        gladiatorArrayList.add(
+                new Brutal(getRandomName(), getRandomNumber(25, 100), getRandomNumber(25, 100), getRandomNumber(25, 100), getRandomNumber(1, 5), Gladiator.Types.Brutal));
+        gladiatorArrayList.add(
+                new Archer(getRandomName(), getRandomNumber(25, 100), getRandomNumber(25, 100), getRandomNumber(25, 100), getRandomNumber(1, 5), Gladiator.Types.Archer));
+        gladiatorArrayList.add(
+                new Assassin(getRandomName(), getRandomNumber(25, 100), getRandomNumber(25, 100), getRandomNumber(25, 100), getRandomNumber(1, 5), Gladiator.Types.Assassin));
+        gladiatorArrayList.add(
+                new Swordsman(getRandomName(), getRandomNumber(25, 100), getRandomNumber(25, 100), getRandomNumber(25, 100), getRandomNumber(1, 5), Gladiator.Types.Swordsman));
+        gladiatorArrayList.add(
+                new Swordsman(getRandomName(), getRandomNumber(25, 100), getRandomNumber(25, 100), getRandomNumber(25, 100), getRandomNumber(1, 5), Gladiator.Types.Swordsman));
+
+        return gladiatorArrayList.get(getRandomNumber(0, 4));
     }
 }
