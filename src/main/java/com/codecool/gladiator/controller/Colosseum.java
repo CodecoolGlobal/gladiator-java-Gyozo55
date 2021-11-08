@@ -37,12 +37,14 @@ public class Colosseum {
         announceChampion(champion);
 
         // The following line chains the above lines:
-        // announceChampion(getChampion(new BinaryTree<>(generateGladiators((int) Math.pow(2, stages)))));
+//         announceChampion(getChampion(new BinaryTree<>(generateGladiators((int) Math.pow(2, stages)))));
     }
 
     private List<Gladiator> generateGladiators(int numberOfGladiators) {
         List<Gladiator> gladiators = new ArrayList<>();
-        // Todo
+        for(int quantity=0; quantity<=numberOfGladiators; quantity++){
+            gladiators.add(gladiatorFactory.generateRandomGladiator());
+        }
         introduceGladiators(gladiators);
         return gladiators;
     }
@@ -82,7 +84,7 @@ public class Colosseum {
     private void introduceGladiators(List<Gladiator> gladiators) {
         view.display(String.format("\nWe have selected Rome's %d finest warriors for today's Tournament!", gladiators.size()));
         for (Gladiator gladiator: gladiators) {
-            view.display(String.format(" - %s", gladiator));
+            view.display(String.format(" - %s", gladiator.getFullName()));
         }
         view.display("\n\"Ave Imperator, morituri te salutant!\"");
     }

@@ -24,7 +24,7 @@ public class GladiatorFactory {
     }
 
     private String getRandomName() {
-        return names.get(RandomUtils.getRandomNumber(0, names.size()));
+        return names.get(RandomUtils.getRandomNumber(0, names.size()-1));
     }
 
 
