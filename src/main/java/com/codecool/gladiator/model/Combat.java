@@ -31,7 +31,15 @@ public class Combat {
                 fight(gladiator1, gladiator2);
             }
         }
-        return gladiator1;
+        if(gladiator1.isDead()){
+            combatLog.add(gladiator1.getFullName()+ "has died, " + gladiator2.getFullName()+" wins!");
+            return gladiator2;
+        }
+        else if(gladiator2.isDead()){
+            combatLog.add(gladiator2.getFullName()+ "has died, " + gladiator1.getFullName()+" wins!");
+            return gladiator1;
+        }
+        return null;
     }
 
     private void fight(Gladiator gladiator1, Gladiator gladiator2) {
