@@ -43,6 +43,18 @@ public abstract class Gladiator {
     protected abstract Multiplier getDexMultiplier();
 
 
+    public double getMaximumHp() {
+        return baseHp * getHpMultiplier().value * level;
+    }
+
+    public double getMaximumSp() {
+        return baseSp * getSpMultiplier().value * level;
+    }
+
+    public double getMaximumDex() {
+        return baseDex * getDexMultiplier().value * level;
+    }
+
     public String getName() {
         return name;
     }
