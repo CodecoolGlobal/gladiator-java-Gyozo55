@@ -6,9 +6,6 @@ import com.codecool.gladiator.util.RandomUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Combat class, used for simulating fights between pairs of gladiators
- */
 public class Combat {
 
     private final Gladiator gladiator1;
@@ -26,15 +23,26 @@ public class Combat {
         int firstAttacker = RandomUtils.getRandomNumber(1,2);
         while (gladiator1.isDead() || gladiator2.isDead()){
             if(firstAttacker==1){
-                gladiator2.decreaseHpBy(gladiator1.getSp());
-                gladiator1.decreaseHpBy(gladiator2.getSp());
+                fight(gladiator1, gladiator2);
+                fight(gladiator2, gladiator1);
             }
             if(firstAttacker==2){
-                gladiator1.decreaseHpBy(gladiator2.getSp());
-                gladiator2.decreaseHpBy(gladiator1.getSp());
+                fight(gladiator2, gladiator1);
+                fight(gladiator1, gladiator2);
             }
         }
         return gladiator1;
+    }
+
+    private void fight(Gladiator gladiator1, Gladiator gladiator2) {
+        if(validHit(hitChance(gladiator2.getDex(), gladiator1.getDex()))){
+            double currentHit = gladiator1.getSp() * RandomUtils.getRandomDouble(0.1, 0.5);
+            gladiator2.decreaseHpBy(currentHit);
+            combatLog.add(gladiator1.getFullName()+ " deals " + currentHit + " damage");
+        }
+        else {
+            combatLog.add(gladiator1.getFullName()+ " missed");
+        }
     }
 
     private int hitChance(double attackerDex, double defenderDex){
@@ -49,7 +57,22 @@ public class Combat {
         return (attackerDexInt-defenderDexInt);
     }
 
-
+    private boolean validHit(int hitChance){
+        int absolutHitChance = Math.abs(hitChance);
+        if(absolutHitChance<30){
+            return false;
+        }
+        if(absolutHitChance>30 && absolutHitChance<70){
+            int chance = RandomUtils.getRandomNumber(0, 1);
+            if (chance==0){
+                return false;
+            }
+            return chance == 1;
+        }
+        else{
+            return absolutHitChance > 70;
+        }
+    }
 
     public Gladiator getGladiator1() {
         return gladiator1;
