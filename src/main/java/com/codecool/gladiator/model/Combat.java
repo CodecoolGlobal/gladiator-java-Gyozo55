@@ -1,6 +1,8 @@
 package com.codecool.gladiator.model;
 
 import com.codecool.gladiator.model.gladiators.Gladiator;
+import com.codecool.gladiator.model.gladiators.GladiatorFactory;
+import com.codecool.gladiator.util.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,15 +23,10 @@ public class Combat {
         this.combatLog = new ArrayList<>();
     }
 
-    /**
-     * Simulates the combat and returns the winner.
-     * If one of the opponents is null, the winner is the one that is not null
-     * If both of the opponents are null, the return value is null
-     *
-     * @return winner of combat
-     */
     public Gladiator simulate() {
-        // Todo
+        while (gladiator1.isDead() || gladiator2.isDead()){
+            RandomUtils.getRandomNumber(0,1);
+        }
         return gladiator1;
     }
 
