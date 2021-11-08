@@ -36,6 +36,10 @@ public abstract class Gladiator {
         this.currentHealth -= enemyAttack;
     }
 
+    public void healUp(){
+        this.currentHealth = getMaximumHp();
+    }
+
     public double getHp() {
         return getMaximumHp();
     }

@@ -2,8 +2,6 @@ package com.codecool.gladiator.model.gladiators;
 
 import com.codecool.gladiator.util.RandomUtils;
 
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
