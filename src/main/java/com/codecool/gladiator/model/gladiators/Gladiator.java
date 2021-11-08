@@ -27,8 +27,25 @@ public abstract class Gladiator {
 
     protected abstract Multiplier getDexMultiplier();
 
-    public boolean currentHealthStatus(){
+
+    public boolean isDead(){
         return currentHealth > 0;
+    }
+
+    public void decreaseHpBy(double enemyAttack){
+        this.currentHealth -= enemyAttack;
+    }
+
+    public double getHp() {
+        return getMaximumHp();
+    }
+
+    public double getSp() {
+        return getMaximumSp();
+    }
+
+    public double getDex() {
+        return getMaximumDex();
     }
 
     public double getMaximumHp() {
