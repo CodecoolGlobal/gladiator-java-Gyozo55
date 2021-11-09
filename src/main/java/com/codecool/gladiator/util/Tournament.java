@@ -87,12 +87,20 @@ public class Tournament {
      * @param value the value to be added to the tree
      */
     public void add(Contestants value) {
-        if(left){
-            leftBranch.add(value);
+        if (leftBranch == null && rightBranch == null) {
+            if (contestants == null)
+                contestants = value;
+            else {
+                leftBranch = new Tournament(contestants);
+                rightBranch = new Tournament(value);
+                contestants = null;
+            }
+        } else {
+            Tournament branchToGrow = left ? leftBranch : rightBranch;
+            branchToGrow.add(value);
+            left = !left;
         }
-        else {
-            rightBranch.add(value);
-        }
+        size++;
     }
 
     /**
