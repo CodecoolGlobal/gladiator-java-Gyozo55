@@ -14,5 +14,4 @@ public class Main {
         colosseum.welcomeAndAskForStages();
         colosseum.runSimulation();
     }
-
 }
